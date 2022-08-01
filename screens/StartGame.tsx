@@ -1,5 +1,5 @@
 import { TextInput, View, StyleSheet } from 'react-native';
-import Button from '../components/buttons/button';
+import PrimaryButton from '../components/buttons/primary-button';
 import NumberInput from '../components/forms/number-input';
 
 function StartGame() {
@@ -9,10 +9,10 @@ function StartGame() {
       <NumberInput />
       <View style={buttonsContainer}>
         <View style={buttonContainer}>
-          <Button>Reset</Button>
+          <PrimaryButton>Reset</PrimaryButton>
         </View>
         <View style={buttonContainer}>
-          <Button>Confirm</Button>
+          <PrimaryButton>Confirm</PrimaryButton>
         </View>
       </View>
     </View>
