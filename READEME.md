@@ -10,6 +10,8 @@ This repository contains the codebase of Guessing Game mobile application. It pr
 
 ## Base dependencies
 
+- Expo Linear Gradient
+
 ## Folder Structure
 
 Below is the folder structure:
