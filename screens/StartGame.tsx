@@ -3,12 +3,18 @@ import Button from '../components/buttons/button';
 import NumberInput from '../components/forms/number-input';
 
 function StartGame() {
-  const { inputContainer } = styles;
+  const { inputContainer, buttonsContainer, buttonContainer } = styles;
   return (
     <View style={inputContainer}>
       <NumberInput />
-      <Button>Reset</Button>
-      <Button>Confirm</Button>
+      <View style={buttonsContainer}>
+        <View style={buttonContainer}>
+          <Button>Reset</Button>
+        </View>
+        <View style={buttonContainer}>
+          <Button>Confirm</Button>
+        </View>
+      </View>
     </View>
   );
 }
@@ -20,7 +26,14 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 100,
     marginHorizontal: 24,
-    backgroundColor: '#72063c',
+    backgroundColor: '#4e0329',
     borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
