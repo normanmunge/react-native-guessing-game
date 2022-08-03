@@ -3,7 +3,7 @@ import PrimaryButton from '../components/buttons/primary-button';
 import NumberInput from '../components/forms/number-input';
 import { useState } from 'react';
 
-function StartGame() {
+function StartGame({ onPickedNumber }: any) {
   const { inputContainer, buttonsContainer, buttonContainer } = styles;
 
   const [enteredValue, setEnteredValue] = useState('');
@@ -27,7 +27,7 @@ function StartGame() {
       return;
     }
 
-    console.log('Valid number', enteredValue);
+    onPickedNumber(chosenNumber);
   };
 
   return (
