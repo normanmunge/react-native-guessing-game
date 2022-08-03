@@ -7,6 +7,9 @@ This repository contains the codebase of Guessing Game mobile application. It pr
 - [Node.js > 12](https://nodejs.org) and npm (Recommended: Use [nvm](https://github.com/nvm-sh/nvm))
 - [ExpoCLI] (https://expo.dev/)
 - [Android Studio and Android SDK](https://developer.android.com/studio)
+- [Typescript] (https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+  - (https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets)
+  - (https://github.com/typescript-cheatsheets/react-native)
 
 ## Base dependencies
 
