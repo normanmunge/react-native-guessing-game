@@ -1,11 +1,25 @@
 import { View, TextInput, StyleSheet } from 'react-native';
-import
+// import { useState } from 'react';
 
-const NumberInput = ({}) => {
+interface Input {
+  [key: string]: any; // allows dynamic keys and value when you might not know the names and types of all object properties in advance
+  valueInput: string;
+  handler?: any;
+}
+
+const NumberInput: React.FC<Input> = (props) => {
+  const { valueInput, handler } = props;
+
   const { numberInput } = styles;
   return (
     <View>
-      <TextInput style={numberInput} maxLength={2} keyboardType='number-pad' />
+      <TextInput
+        style={numberInput}
+        maxLength={2}
+        keyboardType='number-pad'
+        value={valueInput}
+        onChange={handler}
+      />
     </View>
   );
 };
