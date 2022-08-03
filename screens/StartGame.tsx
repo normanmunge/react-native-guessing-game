@@ -19,12 +19,6 @@ function StartGame() {
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredValue);
 
-    console.log(
-      'THE CHOSEN NUMBER',
-      chosenNumber,
-      'AND ENTERED VALUE',
-      enteredValue
-    );
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       //show alert...
       Alert.alert('Invalid Input!', 'Value has to between 0 and 99', [
