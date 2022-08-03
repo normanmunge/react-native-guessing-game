@@ -1,14 +1,13 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
-type ButtonProps = {
+interface ButtonProps {
   //text: string;
   //rest of the props
-};
-const PrimaryButton: React.FC<ButtonProps> = ({ children, ...props }) => {
+  onPressHandler?: (params: any) => any;
+}
+const PrimaryButton: React.FC<ButtonProps> = ({ children, onPressHandler }) => {
   const { btnInnerContainer, btnOuterContainer, btnText, btnPressed } = styles;
-  const onPressHandler = () => {
-    console.log('PRESSED!');
-  };
+
   return (
     <View style={btnOuterContainer}>
       <Pressable
