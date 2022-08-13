@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   btnText: {
-    color: Colors.textColor,
+    color: Colors.white,
     textAlign: 'center',
   },
   btnPressed: {
