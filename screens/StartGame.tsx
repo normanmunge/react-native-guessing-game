@@ -1,11 +1,13 @@
-import { TextInput, View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import PrimaryButton from '../components/ui/buttons/primary-button';
 import NumberInput from '../components/ui/forms/number-input';
-import Colors from '../constants/colors';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Instructions from '../components/ui/texts/instructions';
+import Title from '../components/ui/texts/title';
+import Card from '../components/ui/Card';
 
 function StartGame({ onPickedNumber }: any) {
-  const { inputContainer, buttonsContainer, buttonContainer } = styles;
+  const { screenContainer, buttonsContainer, buttonContainer } = styles;
 
   const [enteredValue, setEnteredValue] = useState('');
 
@@ -32,20 +34,24 @@ function StartGame({ onPickedNumber }: any) {
   };
 
   return (
-    <View style={inputContainer}>
-      <NumberInput valueInput={enteredValue} handler={enteredValueHandler} />
-      <View style={buttonsContainer}>
-        <View style={buttonContainer}>
-          <PrimaryButton onPressHandler={resetInputHandler}>
-            Reset
-          </PrimaryButton>
+    <View style={screenContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <Instructions>Enter a Number</Instructions>
+        <NumberInput valueInput={enteredValue} handler={enteredValueHandler} />
+        <View style={buttonsContainer}>
+          <View style={buttonContainer}>
+            <PrimaryButton onPressHandler={resetInputHandler}>
+              Reset
+            </PrimaryButton>
+          </View>
+          <View style={buttonContainer}>
+            <PrimaryButton onPressHandler={confirmInputHandler}>
+              Confirm
+            </PrimaryButton>
+          </View>
         </View>
-        <View style={buttonContainer}>
-          <PrimaryButton onPressHandler={confirmInputHandler}>
-            Confirm
-          </PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -53,12 +59,9 @@ function StartGame({ onPickedNumber }: any) {
 export default StartGame;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    padding: 16,
+  screenContainer: {
+    flex: 1,
     marginTop: 100,
-    marginHorizontal: 24,
-    backgroundColor: Colors.primary800,
-    borderRadius: 8,
     alignItems: 'center',
   },
   buttonsContainer: {

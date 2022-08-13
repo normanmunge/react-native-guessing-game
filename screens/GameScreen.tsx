@@ -3,6 +3,8 @@ import Title from '../components/ui/texts/title';
 import React, { useState, useEffect, useMemo } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/buttons/primary-button';
+import Card from '../components/ui/Card';
+import Instructions from '../components/ui/texts/instructions';
 
 const generateRandomNumber = (min: number, max: number, exclude: number) => {
   const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -71,8 +73,8 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
     <View style={screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>higher or lower?</Text>
+      <Card>
+        <Instructions>Higher or Lower?</Instructions>
         <View>
           <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'lower')}>
             -
@@ -81,7 +83,7 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
             +
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>
         <Text>LOG ROUNDS</Text>
       </View>
