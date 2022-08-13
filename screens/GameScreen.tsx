@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import Title from '../components/ui/texts/title';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/buttons/primary-button';
 
@@ -22,16 +22,18 @@ interface gameScreenProps {
 }
 
 const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
-  const initialGuess: any = generateRandomNumber(
-    minBoundary,
-    maxBoundary,
-    userNumber
-  );
+  // const initialGuess: any = useMemo(
+  //   //returns a memoized value. The hook is used to keep expensive, resource intensive functions from needlessly running
+  //   () => generateRandomNumber(minBoundary, maxBoundary, userNumber),
+  //   [minBoundary, maxBoundary, userNumber]
+  // );
+  const initialGuess: any = generateRandomNumber(1, 100, userNumber);
 
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
   const { screen } = styles;
 
   useEffect(() => {
+    //enables perfoming sideEffects. It lets react know that the component needs to do sthn after rendering
     if (currentGuess === userNumber) {
       onGameOver();
     }
