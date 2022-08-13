@@ -32,7 +32,8 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
   const initialGuess: any = generateRandomNumber(1, 100, userNumber);
 
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
-  const { screen } = styles;
+  const { screen, buttonContainer, buttonsContainer, instructionsText } =
+    styles;
 
   useEffect(() => {
     //enables perfoming sideEffects. It lets react know that the component needs to do sthn after rendering
@@ -74,14 +75,22 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <Instructions>Higher or Lower?</Instructions>
-        <View>
-          <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'lower')}>
-            -
-          </PrimaryButton>
-          <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'higher')}>
-            +
-          </PrimaryButton>
+        <Instructions _style={instructionsText}>Higher or Lower?</Instructions>
+        <View style={buttonsContainer}>
+          <View style={buttonContainer}>
+            <PrimaryButton
+              onPressHandler={nextGuessHandler.bind(this, 'lower')}
+            >
+              -
+            </PrimaryButton>
+          </View>
+          <View style={buttonContainer}>
+            <PrimaryButton
+              onPressHandler={nextGuessHandler.bind(this, 'higher')}
+            >
+              +
+            </PrimaryButton>
+          </View>
         </View>
       </Card>
       <View>
@@ -97,5 +106,14 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  instructionsText: {
+    marginBottom: 12,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });

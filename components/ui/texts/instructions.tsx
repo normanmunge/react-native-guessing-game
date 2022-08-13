@@ -3,11 +3,12 @@ import Colors from '../../../constants/colors';
 
 interface instructionsProps {
   children?: string;
+  _style?: object;
 }
 
-const Instructions: React.FC<instructionsProps> = ({ children }) => {
+const Instructions: React.FC<instructionsProps> = ({ children, _style }) => {
   const { text } = styles;
-  return <Text style={text}>{children}</Text>;
+  return <Text style={[text, _style]}>{children}</Text>;
 };
 
 export default Instructions;
