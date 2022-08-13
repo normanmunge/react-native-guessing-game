@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import Title from '../components/ui/texts/title';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/buttons/primary-button';
 
@@ -18,9 +18,10 @@ let minBoundary: number = 1;
 let maxBoundary: number = 100;
 interface gameScreenProps {
   userNumber: number;
+  onGameOver?: any;
 }
 
-const GameScreen: React.FC<gameScreenProps> = ({ userNumber }) => {
+const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
   const initialGuess: any = generateRandomNumber(
     minBoundary,
     maxBoundary,
@@ -29,6 +30,12 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber }) => {
 
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
   const { screen } = styles;
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]);
 
   const nextGuessHandler = (direction: string) => {
     // direction => 'lower' or 'higher'
