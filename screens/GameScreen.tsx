@@ -5,6 +5,8 @@ import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/buttons/primary-button';
 import Card from '../components/ui/Card';
 import Instructions from '../components/ui/texts/instructions';
+import { Ionicons } from '@expo/vector-icons';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const generateRandomNumber = (min: number, max: number, exclude: number) => {
   const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -81,14 +83,14 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
             <PrimaryButton
               onPressHandler={nextGuessHandler.bind(this, 'lower')}
             >
-              -
+              <Ionicons name='md-remove' size={24} color={Colors.white} />
             </PrimaryButton>
           </View>
           <View style={buttonContainer}>
             <PrimaryButton
               onPressHandler={nextGuessHandler.bind(this, 'higher')}
             >
-              +
+              <Ionicons name='md-add' size={24} color={Colors.white} />
             </PrimaryButton>
           </View>
         </View>
