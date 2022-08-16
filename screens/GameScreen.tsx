@@ -6,7 +6,7 @@ import PrimaryButton from '../components/ui/buttons/primary-button';
 import Card from '../components/ui/Card';
 import Instructions from '../components/ui/texts/instructions';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Colors from '../constants/colors';
 
 const generateRandomNumber = (min: number, max: number, exclude: number) => {
   const randomNum = Math.floor(Math.random() * (max - min)) + min;
