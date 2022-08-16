@@ -29,10 +29,10 @@ export default NumberInput;
 
 const styles = StyleSheet.create({
   numberInput: {
+    fontFamily: 'open-sans-bold',
     height: 50,
     width: 50,
     fontSize: 32,
-    fontWeight: 'bold',
     borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,
     color: Colors.accent500,
