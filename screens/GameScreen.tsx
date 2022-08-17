@@ -1,12 +1,13 @@
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, FlatList } from 'react-native';
 import Title from '../components/ui/texts/title';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/buttons/primary-button';
 import Card from '../components/ui/Card';
 import Instructions from '../components/ui/texts/instructions';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/colors';
+import GuessLogItem from '../components/game/GuessLogItem';
 
 const generateRandomNumber = (min: number, max: number, exclude: number) => {
   const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -22,7 +23,7 @@ let minBoundary: number = 1;
 let maxBoundary: number = 100;
 interface gameScreenProps {
   userNumber: number;
-  onGameOver?: any;
+  onGameOver?: (params: number) => any;
 }
 
 const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
@@ -34,13 +35,20 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
   const initialGuess: any = generateRandomNumber(1, 100, userNumber);
 
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
-  const { screen, buttonContainer, buttonsContainer, instructionsText } =
-    styles;
+  const [guessRounds, setGuessRounds] = useState<any[]>([initialGuess]);
+
+  const {
+    screen,
+    buttonContainer,
+    buttonsContainer,
+    instructionsText,
+    listContainer,
+  } = styles;
 
   useEffect(() => {
     //enables perfoming sideEffects. It lets react know that the component needs to do sthn after rendering
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver?.(guessRounds.length);
     }
   }, [currentGuess, userNumber, onGameOver]);
 
@@ -67,7 +75,6 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
     } else {
       minBoundary = currentGuess + 1;
     }
-    console.log(maxBoundary, minBoundary);
     const newRandomNumber: any = generateRandomNumber(
       minBoundary,
       maxBoundary,
@@ -75,7 +82,11 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
     );
 
     setCurrentGuess(newRandomNumber);
+    setGuessRounds((prevGuessRounds) => [newRandomNumber, ...prevGuessRounds]);
   };
+
+  const guessRoundListLength = guessRounds.length;
+
   return (
     <View style={screen}>
       <Title>Opponent's Guess</Title>
@@ -99,8 +110,20 @@ const GameScreen: React.FC<gameScreenProps> = ({ userNumber, onGameOver }) => {
           </View>
         </View>
       </Card>
-      <View>
-        <Text>LOG ROUNDS</Text>
+      <View style={listContainer}>
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => {
+            const { item, index } = itemData;
+            return (
+              <GuessLogItem
+                roundNumber={guessRoundListLength - index}
+                guessNumber={item}
+              />
+            );
+          }}
+          keyExtractor={(item) => item}
+        />
       </View>
     </View>
   );
@@ -121,5 +144,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
