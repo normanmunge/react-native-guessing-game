@@ -1,6 +1,6 @@
 # Farmspeak React Native Mobile Application
 
-This repository contains the codebase of Guessing Game mobile application. It provides a clear and organized structure, core dependencies, of the application. The application is built using the React Native framing using Typescript.
+This repository contains the codebase of a simple Guessing Game mobile application. It provides a clear and organized structure, core dependencies, of the application. The application is built using the React Native, Expo using Typescript.
 
 ## Prerequisites
 
@@ -20,4 +20,7 @@ This repository contains the codebase of Guessing Game mobile application. It pr
 Below is the folder structure:
 
 - `App.tsx`: Main component that starts your whole app.
-- Components: Folder containing our split components
+- Components: Folder containing our UI and game specific components
+- Assets: Contains our assets ie images, fonts
+- Constants: Has our App defaults like colors
+- Screens: Contains the different screens for the app
